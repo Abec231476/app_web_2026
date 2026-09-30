@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetTask - Ver Tareas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <header class="encabezado">
+      <div class="header-container">
+        <h1 class="logo-pettask">PetTask</h1>
+        <nav class="navegacion">
+          <a href="#" class="nav-link">Inicio</a>
+          <a href="#" class="nav-link activo">Mis Tareas</a>
+          <a href="#" class="nav-link">Mi Mascota</a>
+        </nav>
+      </div>
+    </header>
+    <main class="contenido">
+      <section class="tarjeta-tareas">
+        <div class="encabezado-seccion">
+          <h2 class="titulo">Mis Tareas (RF-004)</h2>
+          <p class="descripcion">Consulta y gestiona tus tareas pendientes y completadas.</p>
+        </div>
+        <div class="metricas-grid">
+          <div class="tarjeta-metrica">
+            <span class="metrica-num" id="cnt-total">0</span>
+            <span class="metrica-lbl">Totales</span>
+          </div>
+          <div class="tarjeta-metrica">
+            <span class="metrica-num text-pendiente" id="cnt-pendientes">0</span>
+            <span class="metrica-lbl">Pendientes</span>
+          </div>
+          <div class="tarjeta-metrica">
+            <span class="metrica-num text-completada" id="cnt-completadas">0</span>
+            <span class="metrica-lbl">Completadas</span>
+          </div>
+        </div>
+        <div class="barra-controles">
+          <div class="grupo-filtros">
+            <button class="btn-filtro activo" onclick="filtrarTareas('todas', this)">Todas</button>
+            <button class="btn-filtro" onclick="filtrarTareas('pendiente', this)">Pendientes</button>
+            <button class="btn-filtro" onclick="filtrarTareas('completada', this)">Completadas</button>
+          </div>
+          <div class="caja-busqueda">
+            <input
+              type="text"
+              id="inputBusqueda"
+              class="form-control-custom"
+              placeholder="Buscar tarea o materia..."
+              onkeyup="buscarTarea()"
+            />
+          </div>
+        </div>
+
+        <!-- Lista Interactiva de Tareas -->
+        <div class="lista-tareas" id="listaTareas">
+          
+          <!-- Tarea 1 -->
+          <div class="tarea-item" data-estado="pendiente">
+            <div class="tarea-info">
+              <span class="materia-tag">Diseño de Interfaces</span>
+              <strong>Crear prototipos en Figma para el login</strong>
+              <small>📅 Entrega: 02/10/2026</small>
+            </div>
+            <div class="tarea-acciones">
+              <button class="btn-estado btn-completar" onclick="cambiarEstadoTarea(this)">
+                Marcar Completada
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarea 2 -->
+          <div class="tarea-item" data-estado="pendiente">
+            <div class="tarea-info">
+              <span class="materia-tag">Programación POO</span>
+              <strong>Terminar diagrama de clases UML</strong>
+              <small>📅 Entrega: 30/09/2026</small>
+            </div>
+            <div class="tarea-acciones">
+              <button class="btn-estado btn-completar" onclick="cambiarEstadoTarea(this)">
+                Marcar Completada
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarea 3 -->
+          <div class="tarea-item completada" data-estado="completada">
+            <div class="tarea-info">
+              <span class="materia-tag">Bases de Datos</span>
+              <strong>Migrar tablas e integrar procedimientos en MySQL</strong>
+              <small>📅 Completada el: 22/09/2026</small>
+            </div>
+            <div class="tarea-acciones">
+              <button class="btn-estado btn-deshacer" onclick="cambiarEstadoTarea(this)">
+                Deshacer
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Estado vacío cuando no hay coincidencias -->
+        <div class="estado-vacio" id="estadoVacio" style="display: none;">
+          <p>No se encontraron tareas que coincidan con la búsqueda o filtro.</p>
+        </div>
+
+        <!-- Pie de la tarjeta -->
+        <div class="pie-tarjeta">
+          <button type="button" class="btn-rosa" onclick="alert('Redirigiendo a Agregar Tareas...')">
+            + Agregar Nueva Tarea
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pie-pagina">
+      <p>PetTask &copy; 2026 - Proyecto de Ingeniería de Software</p>
+    </footer>
+
+    <!-- Script de Interacciones -->
+    <script src="script.js"></script>
+  </body>
+</html>
